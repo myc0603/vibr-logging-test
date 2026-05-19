@@ -31,10 +31,10 @@
         "options": {
           "Name": "loki",
           "Url": "http://3.35.200.180:3100/loki/api/v1/push",
-          "Labels": "{job=\"ecs-test\",env=\"test\"}",
-          "RemoveKeys": "container_id,ecs_task_arn",
-          "LabelKeys": "container_name,ecs_task_definition",
-          "LineFormat": "json"
+          "labels": "{job=\"ecs-test\",env=\"test\"}",
+          "remove_keys": "container_id,ecs_task_arn",
+          "label_keys": "container_name,ecs_task_definition",
+          "line_format": "json"
         }
       }
     }
