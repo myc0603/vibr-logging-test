@@ -32,7 +32,7 @@
           "Name": "loki",
           "host": "3.35.200.180",
           "port": "3100",
-          "labels": "job=\"ecs-test\",env=\"test\"",
+          "labels": "job=ecs-test,env=test",
           "remove_keys": "container_id,ecs_task_arn",
           "label_keys": "$container_name,$ecs_task_definition",
           "line_format": "json"
