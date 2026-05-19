@@ -30,7 +30,8 @@
         "logDriver": "awsfirelens",
         "options": {
           "Name": "loki",
-          "Url": "http://3.35.200.180:3100/loki/api/v1/push",
+          "host": "3.35.200.180",
+          "port": "3100",
           "labels": "{job=\"ecs-test\",env=\"test\"}",
           "remove_keys": "container_id,ecs_task_arn",
           "label_keys": "container_name,ecs_task_definition",
