@@ -7,15 +7,34 @@
   "executionRoleArn": "arn:aws:iam::474891440772:role/ecsTaskExecutionRole",
   "containerDefinitions": [
     {
+      "name": "log-router",
+      "image": "public.ecr.aws/aws-observability/aws-for-fluent-bit:stable",
+      "essential": true,
+      "firelensConfiguration": {
+        "type": "fluentbit"
+      },
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/test-server-firelens",
+          "awslogs-region": "ap-northeast-2",
+          "awslogs-stream-prefix": "firelens"
+        }
+      }
+    },
+    {
       "name": "vibr-logging-test",
       "image": "474891440772.dkr.ecr.ap-northeast-2.amazonaws.com/vibr-logging-test:latest",
       "essential": true,
       "logConfiguration": {
-        "logDriver": "awslogs",
+        "logDriver": "awsfirelens",
         "options": {
-          "awslogs-group": "/ecs/vibr-logging-test",
-          "awslogs-region": "ap-northeast-2",
-          "awslogs-stream-prefix": "ecs"
+          "Name": "loki",
+          "Url": "http://3.35.200.180:3100/loki/api/v1/push",
+          "Labels": "{job=\"ecs-test\",env=\"test\"}",
+          "RemoveKeys": "container_id,ecs_task_arn",
+          "LabelKeys": "container_name,ecs_task_definition",
+          "LineFormat": "json"
         }
       }
     }
