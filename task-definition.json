@@ -1,0 +1,23 @@
+{
+  "family": "vibr-logging-test",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "executionRoleArn": "arn:aws:iam::474891440772:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "vibr-logging-test",
+      "image": "474891440772.dkr.ecr.ap-northeast-2.amazonaws.com/vibr-logging-test:latest",
+      "essential": true,
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/vibr-logging-test",
+          "awslogs-region": "ap-northeast-2",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ]
+}
